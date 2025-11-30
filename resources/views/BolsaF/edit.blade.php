@@ -13,7 +13,7 @@
         @csrf
         @method('PUT')
 
-        <h1 class="text-2xl font-bold text-gray-700 text-center">Editar Cadastro</h1>
+        <h1 class="text-2xl font-bold text-gray-700 text-center">Editar Cadastro do Bolsa Família</h1>
 
         <div>
             <label class="block text-gray-600 font-medium">Nome</label>
@@ -46,7 +46,7 @@
         </div>
 
         <button type="submit"
-            class="w-full bg-green-600 text-white py-2 rounded-lg font-semibold hover:bg-green-700 transition">
+            class="w-full bg-blue-600 text-white py-2 rounded-lg font-semibold hover:bg-blue-700 transition">
             Atualizar
         </button>
     </form>

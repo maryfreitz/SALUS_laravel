@@ -1,30 +1,40 @@
 <?php
 
-use App\Http\Controllers\BolsaController;
-use App\Http\Controllers\medicamentosController;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Auth\AuthenticatedSessionController;
-use App\Http\Controllers\VisitasController;
+use App\Http\Controllers\gestanteController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\VacinacaoController;
-
+use App\Http\Controllers\medicamentosController;
+use App\Http\Controllers\VisitasController;
+use App\Http\Controllers\BolsaController;
+use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('login');
+    return redirect()->route('login');
 });
 
-Route::get('/telaInicial', function () {
-    return view('telaInicial');
-})->name('telaInicial');
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
 
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
 
-Route::get('/login', [AuthenticatedSessionController::class, 'create'])
-        ->name('login');
+Route::get('/gestante', [gestanteController::class, 'index'])->name('gestante.index');
 
-Route::post('/login', [AuthenticatedSessionController::class, 'store']);
+Route::get('/gestante/create', [gestanteController::class, 'create'])->name('gestante.create');
 
-Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
-        ->name('logout');
+Route::post('/gestante', [gestanteController::class, 'store'])->name('gestante.store');
+
+Route::get('/gestante/{id}/edit', [gestanteController::class, 'edit'])->name('gestante.edit');
+
+Route::put('/gestante/{id}', [gestanteController::class, 'update'])->name('gestante.update');
+
+Route::delete('/gestante/{id}', [gestanteController::class, 'destroy'])->name('gestante.destroy');
+
 
 
 Route::get('/vacinacao', [VacinacaoController::class, 'index'])->name('ControleV.index');
@@ -73,3 +83,6 @@ Route::get("/Bolsa/{Bolsa}/edit" , [BolsaController::class,"edit"])->name("Bolsa
 Route::put("/Bolsa/{Bolsa}" , [BolsaController::class,"update"])->name("BolsaF.update");
 
 Route::delete("/Bolsa/{Bolsa}" , [BolsaController::class,"destroy"])->name("BolsaF.destroy");
+
+
+require __DIR__.'/auth.php';

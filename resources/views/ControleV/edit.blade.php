@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
-    <title>Cadastrar</title>
+    <title>Editar</title>
 </head>
 <body class="bg-gray-100 flex justify-center items-center min-h-screen">
 
@@ -13,7 +13,7 @@
         @csrf
         @method('PUT')
 
-        <h1 class="text-2xl font-bold text-gray-700 text-center">Cadastrar Vacinação</h1>
+        <h1 class="text-2xl font-bold text-gray-700 text-center">Editar cadastro de vacinação</h1>
 
         <div>
             <label class="block font-medium text-gray-600">Nome do paciente</label>

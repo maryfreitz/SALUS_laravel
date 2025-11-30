@@ -12,7 +12,7 @@
           class="bg-white p-8 rounded-xl shadow-lg w-full max-w-md space-y-4">
         @csrf
 
-        <h1 class="text-2xl font-bold text-gray-700 text-center">Cadastrar Família</h1>
+        <h1 class="text-2xl font-bold text-gray-700 text-center">Cadastrar no Bolsa Família</h1>
 
         <div>
             <label class="block font-medium text-gray-600">Nome</label>

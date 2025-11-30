@@ -11,6 +11,13 @@
 
 <body class="bg-[#b7e3f1]">
 
+    <form action="{{ route('logout') }}" method="POST" class="absolute left-4 mb-10 mt-10">
+        @csrf
+        <button type="submit" class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition">
+            Logout
+        </button>
+    </form>
+
     <!-- Topo -->
     <header class="w-full bg-[#1e6f97] py-4 flex justify-center">
         <div class="flex flex-col items-center">
@@ -23,7 +30,7 @@
 
         <!-- Primeira linha de botões -->
         <div class="flex gap-10">
-            <a <a href="{{ route('Visita.index') }}"
+            <a href="{{ route('Visita.index') }}"
                class="bg-[#1e6f97] text-white px-10 py-4 rounded-lg shadow-lg text-center text-lg font-medium hover:scale-105 transition">
                CRUD VISITA <br> DOMICILIAR
             </a>
@@ -45,7 +52,7 @@
                CRUD CONTROLE <br> DE VACINAÇÃO
             </a>
 
-            <a href="#"
+            <a href="{{ route('gestante.index') }}"
                class="bg-[#1e6f97] text-white px-10 py-4 rounded-lg shadow-lg text-center text-lg font-medium hover:scale-105 transition">
                CRUD <br> GESTANTES
             </a>
@@ -55,3 +62,4 @@
 
 </body>
 </html>
+

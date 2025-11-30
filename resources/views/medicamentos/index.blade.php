@@ -8,6 +8,11 @@
 </head>
 <body class="bg-gray-100 min-h-screen p-6">
 
+        <a href="{{ route('dashboard') }}"
+            class="inline-block mt-6 bg-[#1363ae] text-white py-2 px-4 rounded-lg hover:bg-gray-700 transition">
+            ← Tela Inicial
+        </a>
+
     <div class="max-w-3xl mx-auto bg-white p-8 rounded-xl shadow-lg">
         <h1 class="text-3xl font-bold text-gray-700 mb-6">Medicamentos Psicólogo</h1>
 

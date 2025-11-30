@@ -61,7 +61,7 @@
 
                 <p class="text-sm text-[#0a2a3d] opacity-70 mt-2">
                     Não tem uma conta?
-                    <a href="#" class="text-blue-700 font-medium hover:underline">Cadastre-se</a>
+                    <a href="{{ route('register') }}" class="text-blue-700 font-medium hover:underline">Cadastre-se</a>
                 </p>
             </form>
 

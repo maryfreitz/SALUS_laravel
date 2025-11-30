@@ -4,16 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
-    <title>Cadastrar</title>
+    <title>Editar</title>
 </head>
 <body class="bg-gray-100 flex justify-center items-center min-h-screen">
 
-    <form action="{{ route('medicamentos.store') }}" method="POST"
+    <form action="{{ route('medicamentos.update', $medicamentoP->id) }}" method="POST"
           class="bg-white p-8 rounded-xl shadow-lg w-full max-w-md space-y-4">
         @csrf
         @method('PUT')
 
-        <h1 class="text-2xl font-bold text-gray-700 text-center">Cadastrar Família</h1>
+        <h1 class="text-2xl font-bold text-gray-700 text-center">Editar Cadastro</h1>
 
         <div>
             <label class="block font-medium text-gray-600">Nome do Paciente</label>
