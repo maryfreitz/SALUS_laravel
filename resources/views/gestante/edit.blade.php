@@ -13,6 +13,17 @@
         @csrf
         @method('PUT')
 
+        @if ($errors->any())
+            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4">
+                <strong>Erro!</strong>
+                    <ul class="mt-2 list-disc ml-5">
+                        @foreach ($errors->all() as $erro)
+                            <li>{{ $erro }}</li>
+                        @endforeach
+                    </ul>
+            </div>
+        @endif
+
         <h1 class="text-2xl font-bold text-gray-700 text-center">Editar Cadastro Gestante</h1>
 
         <div>
@@ -20,7 +31,7 @@
             <input type="text" name="nome_gestante"
                 class="w-full border border-gray-300 rounded-lg p-2 mt-1 focus:ring focus:ring-blue-300"
                 value="{{ $gestanteC->nome_gestante }}"
-                placeholder="EX: Maria" required>
+                placeholder="EX: Maria" 
         </div>
 
         <div>
@@ -28,7 +39,7 @@
             <input type="number" name="idade_gestacao"
                 class="w-full border border-gray-300 rounded-lg p-2 mt-1 focus:ring focus:ring-blue-300"
                 value="{{ $gestanteC->idade_gestacao }}"
-                placeholder="Ex: 28" required>
+                placeholder="Ex: 28" 
         </div>
 
         <div>
@@ -36,7 +47,7 @@
             <input type="date" name="data_prevista_parto"
                 class="w-full border border-gray-300 rounded-lg p-2 mt-1 focus:ring focus:ring-blue-300"
                 value="{{ $gestanteC->data_prevista_parto }}"
-                required>
+                
         </div>
 
         <div>
@@ -44,7 +55,7 @@
             <input type="text" name="responsavel_acompanhamento"
                 class="w-full border border-gray-300 rounded-lg p-2 mt-1 focus:ring focus:ring-blue-300"
                 value="{{ $gestanteC->responsavel_acompanhamento }}"
-                placeholder="Ex: Enfermeira Ana" required>
+                placeholder="Ex: Enfermeira Ana" 
         </div>
 
         <button type="submit"

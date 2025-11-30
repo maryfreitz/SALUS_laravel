@@ -29,7 +29,15 @@ class gestanteController extends Controller
      */
     public function store(Request $request)
     {
-        gestante::create($request->all());
+        $validated = $request->validate([
+            'nome_gestante' => 'required|string|max:255',
+            'idade_gestacao' => 'required|integer|min:1|max:45',
+            'data_prevista_parto' => 'required|date',
+            'responsavel_acompanhamento' => 'required|string|max:255',
+        ]);
+
+        gestante::create($validated);
+
         return redirect()->route("gestante.index");
     }
 
@@ -53,10 +61,18 @@ class gestanteController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+public function update(Request $request, string $id)
     {
+        $validated = $request->validate([
+            'nome_gestante' => 'required|string|max:255',
+            'idade_gestacao' => 'required|integer|min:1|max:45',
+            'data_prevista_parto' => 'required|date',
+            'responsavel_acompanhamento' => 'required|string|max:255',
+        ]);
+
         $gestanteC = gestante::findOrFail($id);
-        $gestanteC->update($request->all());
+        $gestanteC->update($validated);
+
         return redirect()->route("gestante.index");
     }
 

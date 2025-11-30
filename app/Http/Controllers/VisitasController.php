@@ -27,10 +27,24 @@ class VisitasController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
-        Visitas::create($request->all());
-        return redirect()->route("Visita.index");
-    }
+{
+    $request->validate([
+        'nome'          => 'required|string|max:255',
+        'motivo_visita' => 'required|string|max:255',
+        'data'          => 'required|date_format:Y-m-d|before_or_equal:today',
+        'agente'        => 'required|string|max:255',
+    ]);
+
+    Visitas::create([
+        'nome'          => $request->nome,
+        'motivo_visita' => $request->motivo_visita,
+        'data'          => $request->data,
+        'agente'        => $request->agente,
+    ]);
+
+    return redirect()->route("Visita.index");
+}
+
 
     /**
      * Display the specified resource.
@@ -53,12 +67,26 @@ class VisitasController extends Controller
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
-    {
-        $VisitaD = Visitas::findOrFail($id);
-        $VisitaD->update($request->all());
+{
+    $request->validate([
+        'nome'          => 'required|string|max:255',
+        'motivo_visita' => 'required|string|max:255',
+        'data'          => 'required|date_format:Y-m-d|before_or_equal:today',
+        'agente'        => 'required|string|max:255',
+    ]);
 
-        return redirect()->route('Visita.index');
-    }
+    $VisitaD = Visitas::findOrFail($id);
+
+    $VisitaD->update([
+        'nome'          => $request->nome,
+        'motivo_visita' => $request->motivo_visita,
+        'data'          => $request->data,
+        'agente'        => $request->agente,
+    ]);
+
+    return redirect()->route('Visita.index');
+}
+
 
     /**
      * Remove the specified resource from storage.

@@ -15,34 +15,42 @@
 
         <h1 class="text-2xl font-bold text-gray-700 text-center">Editar Cadastro do Bolsa Família</h1>
 
+        @if ($errors->any())
+            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded mb-4">
+                <ul class="list-disc ml-4">
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
         <div>
             <label class="block text-gray-600 font-medium">Nome</label>
             <input type="text" name="nome_familia"
-                value="{{ $bolsaF->nome_familia }}"
-                class="w-full border border-gray-300 rounded-lg p-2 mt-1 focus:ring focus:ring-blue-300"
-                required>
+                value="{{ old('nome_familia', $bolsaF->nome_familia) }}"
+                class="w-full border border-gray-300 rounded-lg p-2 mt-1 focus:ring focus:ring-blue-300">
         </div>
 
         <div>
             <label class="block text-gray-600 font-medium">Data de Nascimento</label>
             <input type="date" name="nascimento"
-                value="{{ $bolsaF->nascimento }}"
-                class="w-full border border-gray-300 rounded-lg p-2 mt-1 focus:ring focus:ring-blue-300"
-                required>
+                value="{{ old('nascimento', $bolsaF->nascimento) }}"
+                class="w-full border border-gray-300 rounded-lg p-2 mt-1 focus:ring focus:ring-blue-300">
         </div>
 
         <div>
             <label class="block text-gray-600 font-medium">Altura (cm)</label>
-            <input type="number" name="altura" value="{{ $bolsaF->altura }}"
-                class="w-full border border-gray-300 rounded-lg p-2 mt-1 focus:ring focus:ring-blue-300"
-                required>
+            <input type="number" name="altura"
+                value="{{ old('altura', $bolsaF->altura) }}"
+                class="w-full border border-gray-300 rounded-lg p-2 mt-1 focus:ring focus:ring-blue-300">
         </div>
 
         <div>
             <label class="block text-gray-600 font-medium">Peso (kg)</label>
-            <input type="number" name="peso" value="{{ $bolsaF->peso }}"
-                class="w-full border border-gray-300 rounded-lg p-2 mt-1 focus:ring focus:ring-blue-300"
-                required>
+            <input type="number" name="peso"
+                value="{{ old('peso', $bolsaF->peso) }}"
+                class="w-full border border-gray-300 rounded-lg p-2 mt-1 focus:ring focus:ring-blue-300">
         </div>
 
         <button type="submit"

@@ -29,8 +29,19 @@ class medicamentosController extends Controller
      */
     public function store(Request $request)
     {
-        medicamentos::create($request->all());
-        return redirect()->route("medicamentos.index");
+        $validated = $request->validate([
+            'nome_paciente' => 'required|string|max:255',
+            'medicamentos' => 'required|string|max:255',
+            'cartaoSUS' => 'required|regex:/^\d{3}\.\d{3}\.\d{3}\-\d{2}$/'
+        ], [
+            'nome_paciente.required' => 'O nome do paciente é obrigatório.',
+            'medicamentos.required' => 'Os medicamentos são obrigatórios.',
+            'cartaoSUS.required' => 'O cartão do SUS (CPF) é obrigatório.',
+            'cartaoSUS.regex' => 'O CPF deve estar no formato XXX.XXX.XXX-XX.'
+        ]);
+
+        medicamentos::create($validated);
+        return redirect()->route('medicamentos.index');
     }
 
     /**
@@ -55,8 +66,19 @@ class medicamentosController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        $validated = $request->validate([
+            'nome_paciente' => 'required|string|max:255',
+            'medicamentos' => 'required|string|max:255',
+            'cartaoSUS' => 'required|regex:/^\d{3}\.\d{3}\.\d{3}\-\d{2}$/'
+        ], [
+            'nome_paciente.required' => 'O nome do paciente é obrigatório.',
+            'medicamentos.required' => 'Os medicamentos são obrigatórios.',
+            'cartaoSUS.required' => 'O cartão do SUS (CPF) é obrigatório.',
+            'cartaoSUS.regex' => 'O CPF deve estar no formato XXX.XXX.XXX-XX.'
+        ]);
+
         $medicamentoP = medicamentos::findOrFail($id);
-        $medicamentoP->update($request->all());
+        $medicamentoP->update($validated);
 
         return redirect()->route('medicamentos.index');
     }

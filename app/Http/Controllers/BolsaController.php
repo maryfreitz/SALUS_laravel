@@ -29,8 +29,21 @@ class BolsaController extends Controller
      */
     public function store(Request $request)
     {
-        BolsaFamilia::create($request->all());
-        return redirect()->route("BolsaF.index");
+        $request->validate([
+            'nome_familia' => 'required',
+            'nascimento' => 'required|date_format:Y-m-d|before:today',
+            'altura'       => 'required|integer|min:1|max:250',
+            'peso'         => 'required|integer|min:1|max:300',
+        ]);
+
+        BolsaFamilia::create([
+            'nome_familia' => $request->nome_familia,
+            'nascimento'   => $request->nascimento,
+            'altura'       => $request->altura,
+            'peso'         => $request->peso,
+        ]);
+
+    return redirect()->route("BolsaF.index");
     }
 
     /**
@@ -56,8 +69,21 @@ class BolsaController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        $request->validate([
+            'nome_familia' => 'required',
+            'nascimento'   => 'required|date_format:Y-m-d|before:today',
+            'altura'       => 'required|integer|min:1|max:250',
+            'peso'         => 'required|integer|min:1|max:300',
+        ]);
+
         $bolsaF = BolsaFamilia::findOrFail($id);
-        $bolsaF->update($request->all());
+
+        $bolsaF->update([
+            'nome_familia' => $request->nome_familia,
+            'nascimento'   => $request->nascimento,
+            'altura'       => $request->altura,
+            'peso'         => $request->peso,
+        ]);
 
         return redirect()->route('BolsaF.index');
     }

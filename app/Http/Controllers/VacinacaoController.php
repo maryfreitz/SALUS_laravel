@@ -29,9 +29,18 @@ class VacinacaoController extends Controller
      */
     public function store(Request $request)
     {
-        Vacinacao::create($request->all());
+        $validated = $request->validate([
+            'nome_paciente' => 'required|string|max:255',
+            'data_aplicacao' => 'required|date',
+            'vacina' => 'required|string|max:255',
+            'responsavel' => 'required|string|max:255',
+        ]);
+
+        Vacinacao::create($validated);
+
         return redirect()->route("ControleV.index");
     }
+
 
     /**
      * Display the specified resource.
@@ -55,8 +64,16 @@ class VacinacaoController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        $validated = $request->validate([
+            'nome_paciente' => 'required|string|max:255',
+            'data_aplicacao' => 'required|date',
+            'vacina' => 'required|string|max:255',
+            'responsavel' => 'required|string|max:255',
+        ]);
+
         $controleV = Vacinacao::findOrFail($id);
-        $controleV->update($request->all());
+        $controleV->update($validated);
+
         return redirect()->route("ControleV.index");
     }
 
