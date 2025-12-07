@@ -18,7 +18,6 @@
 
     <div class="w-full max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 items-center">
 
-
         <div class="space-y-6">
 
             <h1 class="text-5xl font-bold text-[#0a2a3d] leading-tight">
@@ -38,32 +37,45 @@
             <form method="POST" action="{{ route('register') }}" class="space-y-6">
                 @csrf
 
+                <!-- EMAIL -->
+                <div>
+                    <label for="email" class="block text-[#0a2a3d] font-medium mb-1">Email</label>
+                    <input
+                        id="email"
+                        type="email"
+                        name="email"
+                        placeholder="Digite seu email"
+                        class="w-full px-4 py-2 rounded-md bg-white shadow-sm border border-gray-200 outline-none"
+                        value="{{ old('email') }}"
+                        required
+                    />
+                </div>
 
-                <input
-                    type="email"
-                    name="email"
-                    placeholder="Email"
-                    class="w-full px-4 py-2 rounded-md bg-white shadow-sm border border-gray-200 outline-none"
-                    value="{{ old('email') }}"
-                    required
-                />
+                <!-- SENHA -->
+                <div>
+                    <label for="password" class="block text-[#0a2a3d] font-medium mb-1">Senha</label>
+                    <input
+                        id="password"
+                        type="password"
+                        name="password"
+                        placeholder="Digite uma senha"
+                        class="w-full px-4 py-2 rounded-md bg-white shadow-sm border border-gray-200 outline-none"
+                        required
+                    />
+                </div>
 
-                <input
-                    type="password"
-                    name="password"
-                    placeholder="Senha"
-                    class="w-full px-4 py-2 rounded-md bg-white shadow-sm border border-gray-200 outline-none"
-                    required
-                />
-
-
-                <input
-                    type="password"
-                    name="password_confirmation"
-                    placeholder="Confirmar senha"
-                    class="w-full px-4 py-2 rounded-md bg-white shadow-sm border border-gray-200 outline-none"
-                    required
-                />
+                <!-- CONFIRMAR SENHA -->
+                <div>
+                    <label for="password_confirmation" class="block text-[#0a2a3d] font-medium mb-1">Confirmar senha</label>
+                    <input
+                        id="password_confirmation"
+                        type="password"
+                        name="password_confirmation"
+                        placeholder="Repita a senha"
+                        class="w-full px-4 py-2 rounded-md bg-white shadow-sm border border-gray-200 outline-none"
+                        required
+                    />
+                </div>
 
                 <button type="submit"
                     class="px-8 py-2 rounded-md bg-[#1f5d85] text-white font-semibold hover:bg-[#174a6b] transition">
@@ -79,7 +91,6 @@
             </form>
 
         </div>
-
 
         <div class="hidden md:flex justify-end">
             <img src="{{ asset('Imagens/cadastroImagem.png') }}" class="w-[480px]">
